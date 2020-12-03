@@ -7,7 +7,8 @@ let deadpool = {
     }
 }
 
-/* let nombre = this.deadpool.nombre;
+/*
+let nombre = this.deadpool.nombre;
 let apellido = this.deadpool.apellido;
 let poder = this.deadpool.poder;
  */
