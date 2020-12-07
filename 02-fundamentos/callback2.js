@@ -47,6 +47,6 @@ getEmpleado(2, (err, empleado) => {
         if (err) {
             return console.log(err);
         }
-        console.log(`El salario de ${result.nombre} es de $${result.salario}`)
+        console.log(`El salario de ${result.nombre} es de $${result.salario}`);
     })
 });
