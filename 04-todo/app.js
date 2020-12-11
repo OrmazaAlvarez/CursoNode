@@ -17,7 +17,8 @@ switch (comando) {
         }
         break;
     case 'actualizar':
-        console.log('Actualiza una tarea por hacer');
+        let tareaActualizada = porHacer.actualizar(argv.descripcion, argv.completado);
+        console.log(tareaActualizada);
         break;
     default:
         console.log('No se reconoce el comando.');
