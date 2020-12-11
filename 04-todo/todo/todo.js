@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { require } = require('yargs');
 
 let listadoPorHacer = [];
 
@@ -14,7 +13,11 @@ const guardarDB = () => {
 }
 
 const cargarDB = () => {
-    listadoPorHacer = require('../db/data.json');
+    try {
+        listadoPorHacer = require('../db/data.json');
+    } catch (error) {
+        listadoPorHacer = [];
+    }
 }
 
 const crear = (descripcion) => {
