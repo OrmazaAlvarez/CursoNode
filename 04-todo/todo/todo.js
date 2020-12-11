@@ -20,8 +20,13 @@ const cargarDB = () => {
     }
 }
 
+const getListado = () => {
+    cargarDB();
+    return listadoPorHacer;
+}
+
 const crear = (descripcion) => {
-    cargarDB()
+    cargarDB();
     let porHacer = {
         descripcion,
         completado: false
@@ -33,4 +38,4 @@ const crear = (descripcion) => {
     return porHacer;
 };
 
-module.exports = { crear }
+module.exports = { crear, getListado }
