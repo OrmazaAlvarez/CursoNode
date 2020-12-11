@@ -1,17 +1,16 @@
-const argv = require('yargs').argv;
-
-console.log(argv);
-
+const argv = require('./config/yargs').argv;
+const porHacer = require('./todo/todo');
 let comando = argv._[0];
 switch (comando) {
     case 'crear':
-        console.log('Crear tarea pendiente');
+        let tarea = porHacer.crear(argv.descripcion);
+        console.log(tarea);
         break;
     case 'listar':
-        console.log('Mostrar todas las tareas pendientes');
+        console.log('Mostrar todas las tareas por hacer');
         break;
     case 'actualizar':
-        console.log('Actualiza una tarea pendiente');
+        console.log('Actualiza una tarea por hacer');
         break;
     default:
         console.log('No se reconoce el comando.');
