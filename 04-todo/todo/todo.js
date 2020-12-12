@@ -20,16 +20,20 @@ const cargarDB = () => {
     }
 }
 
-const getListado = () => {
+const getListado = (completado) => {
     cargarDB();
-    return listadoPorHacer;
+    if (completado === undefined) {
+        return listadoPorHacer;
+    } else {
+        return listadoPorHacer.filter(tarea => tarea.completado === JSON.parse(completado));
+    }
 }
 
-const crear = (descripcion, completado) => {
+const crear = (descripcion, completado = false) => {
     cargarDB();
     let porHacer = {
         descripcion,
-        completado
+        completado: JSON.parse(completado)
     };
     listadoPorHacer.push(porHacer);
     guardarDB()
@@ -38,11 +42,11 @@ const crear = (descripcion, completado) => {
     return porHacer;
 };
 
-const actualizar = (descripcion, completado = true) => {
+const actualizar = (descripcion, completado) => {
     cargarDB();
     let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
     if (index >= 0) {
-        listadoPorHacer[index].completado = completado;
+        listadoPorHacer[index].completado = JSON.parse(completado);
         guardarDB();
         return true;
     } else {
@@ -67,9 +71,7 @@ const borrar = (descripcion) => {
         guardarDB();
     }
     return eliminado; */
-    let listaux = listadoPorHacer.filter(tarea => {
-        return tarea.descripcion !== descripcion
-    });
+    let listaux = listadoPorHacer.filter(tarea => tarea.descripcion !== descripcion);
     if (listadoPorHacer.length !== listaux.length) {
         listadoPorHacer = listaux;
         guardarDB();
