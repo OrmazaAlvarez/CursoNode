@@ -6,7 +6,7 @@ const opts = {
     },
     completado: {
         alias: 'c',
-        default: true,
+        default: false,
         desc: 'Marca como completado o pendiente la tarea'
     }
 }
@@ -14,6 +14,7 @@ const argv = require('yargs')
     .command('crear', `Crea una tarea por hacer`, opts)
     .command('listar', `Muestra todas las tareas por hacer`)
     .command('actualizar', `Acttualiza el estado completado de una tarea por hacer`, opts)
+    .command('borrar', `Borra una tarea por hacer`, opts)
     .help()
     .argv;
 

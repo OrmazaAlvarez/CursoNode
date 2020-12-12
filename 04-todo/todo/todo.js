@@ -25,11 +25,11 @@ const getListado = () => {
     return listadoPorHacer;
 }
 
-const crear = (descripcion) => {
+const crear = (descripcion, completado) => {
     cargarDB();
     let porHacer = {
         descripcion,
-        completado: false
+        completado
     };
     listadoPorHacer.push(porHacer);
     guardarDB()
@@ -50,4 +50,32 @@ const actualizar = (descripcion, completado = true) => {
     }
 }
 
-module.exports = { crear, actualizar, getListado }
+const borrar = (descripcion) => {
+    cargarDB();
+    /* **** Como lo hice solo :) *****
+    let listaux = [];
+    let eliminado = false
+    listadoPorHacer.forEach(element => {
+        if (element.descripcion != descripcion) {
+            listaux.push(element);
+        } else {
+            eliminado = true;
+        }
+    });
+    if (eliminado) {
+        listadoPorHacer = listaux;
+        guardarDB();
+    }
+    return eliminado; */
+    let listaux = listadoPorHacer.filter(tarea => {
+        return tarea.descripcion !== descripcion
+    });
+    if (listadoPorHacer.length !== listaux.length) {
+        listadoPorHacer = listaux;
+        guardarDB();
+        return true
+    }
+    return false
+};
+
+module.exports = { crear, actualizar, borrar, getListado }
